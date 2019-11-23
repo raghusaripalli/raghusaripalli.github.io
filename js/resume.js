@@ -26,3 +26,22 @@
   });
 
 })(jQuery); // End of use strict
+
+function startAnimation(o) {
+  var hue = 'rgb('
+      + (Math.floor(Math.random() * 256)) + ','
+      + (Math.floor(Math.random() * 256)) + ','
+      + (Math.floor(Math.random() * 256)) + ')';
+  $(o.currentTarget).animate( { color: hue }, 500, function() {
+      startAnimation(o);
+  });
+}
+
+$(document).ready(function() {
+  $('i').hover(
+      startAnimation,
+      function() {
+          $(this).stop().animate( { color: '#000' }, 500);
+      }
+  );
+});
